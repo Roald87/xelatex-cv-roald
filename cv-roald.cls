@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{cv-roald}[2017/01/19 My custom CV class]
+\ProvidesClass{cv-roald}[2017/01/30 My custom CV class]
 \LoadClass{article}
 
 % --------------------------------- %
