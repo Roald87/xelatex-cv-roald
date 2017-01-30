@@ -1,0 +1,71 @@
+% !TeX program = xelatex
+% Run with XeLaTeX
+% You can change the base color of this cv by altering the RGB values of \definecolor{maincolor}{RGB}{102, 204, 51} in class file:  cv-roald.cls. It will automatically define a darker and lighter shade of this color. The darker shade is used for the background of the header, the lighter for the contact details in the header and the maincolor is used for the titles. 
+
+\documentclass[]{cv-roald}
+
+\begin{document}
+\pagestyle{empty} %to remove the page numbers
+
+% This is the header of the first page, which contains your name and contact details. 
+% \sep inserts a | between items. 
+% You can use FontAwesome icons and use \FAspace after a font awesome icon to insert a predefined horizontal space after a font awesome icon icon.
+\header{roald}{ruiter}{\faMapMarker \hspace{\FAspace} Street 123 \sep 1234 AB City \sep Country}
+{\faMobile \hspace{\FAspace} +31 612 345 678 \sep \faEnvelope \hspace{\FAspace} johndoe@gmail.com \sep \faLinkedinSquare \hspace{\FAspace} https://linkedin.com/in/johndoe
+}
+
+\textit{Fancy quote here or a short description of you.}
+
+\section*{eduction}
+% Use tabularcv environment to make a two column environment, left one for dates, right one for details of your education for example. 
+% You can use the command \worktitle{Study name/Job title}{Location}.
+% You can use the environment tabitemize to make a bulletpoint list inside the tabularcv environment.
+\begin{tabularcv}
+    2012-2016   &   \worktitle{Master Physics}{University of City (NL)}
+                    \newline Did awesome physics things.
+                    \begin{tabitemize}
+                        \item I did this
+                        \item Learned that
+                        \item Also did that
+                    \end{tabitemize} 
+                    \\[\vspacepar] % Start new row with this
+    2010-2012   &   \worktitle{Bachelor Physics}{University of City (NL)}
+                    \newline Thesis title: Confined particle systems in n-dimensions.
+\end{tabularcv}
+
+\section*{work}
+\begin{tabularcv}
+    2013-2016   &   \worktitle{R\&D engineer}{Company 123 (NL)}
+                    \newline Project management and designing of bridge components.
+                    \begin{tabitemize}
+                        \item Managing projects
+                        \item Measuring
+                        \item Proof of concept realisation
+                    \end{tabitemize} 
+                    \\[\vspacepar] % Start new row with this
+    2012-2013   &   \worktitle{Software engineer}{Software United (NL)}
+                    \newline Programming in Python and C++.
+\end{tabularcv}   
+
+\section*{awards}
+\begin{tabularcv}
+    2010        &   Winner of \emph{Turing} contest in Lancaster ($\pm$ 431 contenters). 
+\end{tabularcv}
+
+\section*{software skills}
+Python, C++, Microsoft Office, Adobe Photoshop.
+
+Operating systems: Windows, OSX, Linux.
+
+\section*{Languages}
+\begin{tabularcv}
+    Dutch			&	Mother tongue \\[\vspacepar]
+    English			&	Excellent, C2 \\[\vspacepar]
+    German			&	Intermediate, B2 \\[\vspacepar]
+    Swahili         &   Intermediate, B1
+\end{tabularcv}
+
+\section*{interests}
+Bowling, cats, hot food.
+
+\end{document}
