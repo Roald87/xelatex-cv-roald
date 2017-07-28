@@ -1,6 +1,18 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{cv-roald}[2017/01/30 My custom CV class]
-\LoadClass{article}
+\ProvidesClass{cv-roald}[2017/07/25 My custom CV class]
+\LoadClass[a4paper]{article}
+
+\RequirePackage{kvoptions-patch}
+\RequirePackage{xkeyval} %
+\RequirePackage{xcolor} % Enables the use of colours
+
+% \define@key[<prefix>]{<family>}{<key>}[<default>]{<function>}
+\define@key{cv-roald.cls}{changecolor}[102, 204, 51]{%
+	\definecolor{maincolor}{RGB}{#1}%
+}
+
+\ExecuteOptionsX{changecolor}
+\ProcessOptionsX%
 
 % --------------------------------- %
 %	 		PARAMETERS 				%
@@ -13,10 +25,10 @@
 \setlength{\leftcol}{0.22\paperwidth}
 % Height of the header
 \newlength{\hdrheight}
-\setlength{\hdrheight}{38mm}
+\setlength{\hdrheight}{35mm}
 % Vertical space between rows/paragraphs
 \newlength{\vspacepar}
-\setlength{\vspacepar}{0.4\baselineskip}
+\setlength{\vspacepar}{0.3\baselineskip}
 % Horizontal space before and after vertical bar (|) between address and contact details
 \newlength{\hspaddress}
 \setlength{\hspaddress}{1em}
@@ -30,7 +42,7 @@
 \RequirePackage{fontspec} % Needed to run XeLaTeX
 \RequirePackage{titlesec} % To alter the style and spacing of titles
 \RequirePackage{tikz} % Draw things, needed for the header
-\RequirePackage{xcolor} % Enables the use of colours
+%\RequirePackage{xcolor} % Enables the use of colours
 \RequirePackage[margin= \margin]{geometry} % Adjust the margins of a page
 \defaultfontfeatures{ % Important to add, else fontawesome will not work with XeLaTeX 
     Path = Fonts/}
@@ -40,6 +52,7 @@
 \RequirePackage{enumitem} %Reduce spacing between items
 \setlist{parsep=1 pt, topsep=1 pt} % Change item separation of lists globally
 \RequirePackage{parskip} % To change \parindent and \parskip
+\RequirePackage{microtype}
 
 % --------------------------------- %
 %		CALCULATED LENGTHS 			%
@@ -75,13 +88,6 @@
     ]        
 
 % --------------------------------- %
-%	 			COLORS	 			%
-% --------------------------------- %
-\definecolor{maincolor}{RGB}{102, 204, 51}
-\colorlet{lightermain}{maincolor!35}
-\colorlet{darkermain}{maincolor!90!black}
-
-% --------------------------------- %
 %	 			HEADER	 			%
 % --------------------------------- %
 \newcommand{\sep}{\hspace{\hspaddress} | \hspace{\hspaddress}}
@@ -93,16 +99,16 @@
 % #4 = Phone, mail and LinkedIn
   \begin{tikzpicture}[remember picture, overlay]
     % Colored bar on top of the page
-    \node [below right, fill=darkermain, minimum height=\hdrheight, minimum width=\paperwidth, outer sep=0] (name) at (current page.north west) {};
+    \node [below right, fill=maincolor, minimum height=\hdrheight, minimum width=\paperwidth, outer sep=0] (name) at (current page.north west) {};
     % Node for the name
     \node[anchor=base, text=white, inner sep=0.25 cm] (nametext) at (name.base) {%
           \fontsize{40pt}{32pt}\color{white}%
           {\titlefont #1~}{\titlefont \textbf{#2}\par}
           };
     % Address
-    \node[anchor=north, text=lightermain] (address) at (nametext.south)  {#3 \par};
+    \node[anchor=north, text=white] (address) at (nametext.south)  {#3 \par};
     % Phone/mail/nationality
-    \node[anchor=north, text=lightermain] at (address.south)  {#4};
+    \node[anchor=north, text=white] at (address.south)  {#4};
   \end{tikzpicture}
   \vspace{\hdrskip}
 } 
@@ -110,7 +116,6 @@
 % --------------------------------- %
 % 			TITLE FORMAT 			%
 % --------------------------------- %
-
 % Change format of the section title
 \titleformat{\section}{\titlefont\color{maincolor}\huge\bfseries}{\thesection}{0em}{}
 \titlespacing*{\section}{0pt}{1.5ex plus 0.2ex minus .2ex}{-0.5ex plus .2ex}

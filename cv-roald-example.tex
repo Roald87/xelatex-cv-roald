@@ -1,8 +1,13 @@
 % !TeX program = xelatex
 % Run with XeLaTeX
-% You can change the base color of this cv by altering the RGB values of \definecolor{maincolor}{RGB}{102, 204, 51} in class file:  cv-roald.cls. It will automatically define a darker and lighter shade of this color. The darker shade is used for the background of the header, the lighter for the contact details in the header and the maincolor is used for the titles. 
 
-\documentclass[]{cv-roald}
+\documentclass[changecolor={206, 23, 21}]{cv-roald}
+% Available options for cv-roald documentclass: 
+% ---------------------------------------------
+%
+% 	- changecolor = {R, G, B} 
+% 	Changes the color of the header bar and the titles. 
+%	It expects a RGB color code where RGB go from 0-255.
 
 \begin{document}
 \pagestyle{empty} %to remove the page numbers
@@ -21,35 +26,35 @@
 % You can use the command \worktitle{Study name/Job title}{Location}.
 % You can use the environment tabitemize to make a bulletpoint list inside the tabularcv environment.
 \begin{tabularcv}
-    2012-2016   &   \worktitle{Master Physics}{University of City (NL)}
-                    \newline Did awesome physics things.
-                    \begin{tabitemize}
-                        \item I did this
-                        \item Learned that
-                        \item Also did that
-                    \end{tabitemize} 
-                    \\[\vspacepar] % Start new row with this
-    2010-2012   &   \worktitle{Bachelor Physics}{University of City (NL)}
-                    \newline Thesis title: Confined particle systems in n-dimensions.
+	2012-2016   &   \worktitle{Master Physics}{University of City (NL)}
+	\newline Did awesome physics things.
+	\begin{tabitemize}
+		\item I did this
+		\item Learned that
+		\item Also did that
+	\end{tabitemize} 
+	\\[\vspacepar] % Start new row with this
+	2010-2012   &   \worktitle{Bachelor Physics}{University of City (NL)}
+	\newline Thesis title: Confined particle systems in n-dimensions.
 \end{tabularcv}
 
 \section*{work}
 \begin{tabularcv}
-    2013-2016   &   \worktitle{R\&D engineer}{Company 123 (NL)}
-                    \newline Project management and designing of bridge components.
-                    \begin{tabitemize}
-                        \item Managing projects
-                        \item Measuring
-                        \item Proof of concept realisation
-                    \end{tabitemize} 
-                    \\[\vspacepar] % Start new row with this
-    2012-2013   &   \worktitle{Software engineer}{Software United (NL)}
-                    \newline Programming in Python and C++.
+	2013-2016   &   \worktitle{R\&D engineer}{Company 123 (NL)}
+	\newline Project management and designing of bridge components.
+	\begin{tabitemize}
+		\item Managing projects
+		\item Measuring
+		\item Proof of concept realisation
+	\end{tabitemize} 
+	\\[\vspacepar] % Start new row with this
+	2012-2013   &   \worktitle{Software engineer}{Software United (NL)}
+	\newline Programming in Python and C++.
 \end{tabularcv}   
 
 \section*{awards}
 \begin{tabularcv}
-    2010        &   Winner of \emph{Turing} contest in Lancaster ($\pm$ 431 contenters). 
+	2010        &   Winner of \emph{Turing} contest in Lancaster ($\pm$ 431 contenters). 
 \end{tabularcv}
 
 \section*{software skills}
@@ -57,15 +62,15 @@ Python, C++, Microsoft Office, Adobe Photoshop.
 
 Operating systems: Windows, OSX, Linux.
 
-\section*{Languages}
+\section*{languages}
 \begin{tabularcv}
-    Dutch			&	Mother tongue \\[\vspacepar]
-    English			&	Excellent, C2 \\[\vspacepar]
-    German			&	Intermediate, B2 \\[\vspacepar]
-    Swahili         &   Intermediate, B1
+	Dutch			&	Mother tongue \\[\vspacepar]
+	English			&	Excellent, C2 \\[\vspacepar]
+	German			&	Intermediate, B2 \\[\vspacepar]
+	Swahili         &   Intermediate, B1
 \end{tabularcv}
 
 \section*{interests}
 Bowling, cats, hot food.
-
+	
 \end{document}
