@@ -3,7 +3,7 @@
 \LoadClass[a4paper]{article}
 
 % ---------------------------------------------------------------------------- %
-%	 								PARAMETERS 				   				   %
+%                                 PARAMETERS                                   %
 % ---------------------------------------------------------------------------- %
 
 % Size of the margin
@@ -32,7 +32,7 @@
 \setlength{\FAspace}{0.2em}
 
 % ---------------------------------------------------------------------------- %
-%	 							CLASS OPTION 						 		   %
+%                              CLASS OPTION                                    %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
@@ -46,14 +46,14 @@
 % Add option to change the color of the header and titles
 % \define@key[<prefix>]{<family>}{<key>}[<default>]{<function>}
 \define@key{cv-roald.cls}{changecolor}[102, 204, 51]{%
-	\definecolor{maincolor}{RGB}{#1}%
+    \definecolor{maincolor}{RGB}{#1}%
 }
 
 \ExecuteOptionsX{changecolor}
 \ProcessOptionsX%
 
 % ---------------------------------------------------------------------------- %
-%								CALCULATED LENGTHS 	    					   %
+%                              CALCULATED LENGTHS                              %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
@@ -77,7 +77,7 @@
 \setlength{\RightColBody}{\textwidth-\LeftColBody}
 
 % ---------------------------------------------------------------------------- %
-%	 									FONTS 	 							   %
+%                                     FONTS                                    %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
@@ -85,7 +85,7 @@
 \RequirePackage{fontspec}
 % Important to add, else fontawesome will not work with XeLaTeX 
 \defaultfontfeatures{ 
-	Path = Fonts/
+    Path = Fonts/
 }
 % Load cool icons, such as the linked in logo
 \RequirePackage{fontawesome} 
@@ -93,22 +93,22 @@
 \RequirePackage{microtype}
 
 \setmainfont{SourceSansPro}[ 
-		Path = Fonts/,
-		Extension = .otf ,
-	    UprightFont = *-Light,
-	    ItalicFont = *-LightIt,
-	    BoldFont = *-Semibold,
+        Path = Fonts/,
+        Extension = .otf ,
+        UprightFont = *-Light,
+        ItalicFont = *-LightIt,
+        BoldFont = *-Semibold,
     ]    
 
 \newfontfamily\titlefont{AdventPro}[ 
-		Path = Fonts/,
-		Extension = .ttf,
-		UprightFont = *-ExtraLight,
-	    BoldFont = *-SemiBold,
+        Path = Fonts/,
+        Extension = .ttf,
+        UprightFont = *-ExtraLight,
+        BoldFont = *-SemiBold,
     ]        
 
 % ---------------------------------------------------------------------------- %
-%	 								HEADER	 								   %
+%                                   HEADER                                     %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
@@ -125,53 +125,53 @@
 % #3 = Address
 % #4 = Phone, mail and LinkedIn
 \newcommand{\header}[4]{%
-	\begin{tikzpicture}[remember picture, overlay]
-		% Colored bar on top of the page
-		\node[
-			below right, 
-			fill=maincolor, 
-			minimum height=\hdrheight, 
-			minimum width=\paperwidth, 
-			outer sep=0,
-			] (name) at (current page.north west) {};
-		% Node for the name
-		\node[
-			anchor=base, 
-			text=white, 
-			inner sep=0.25 cm
-			] (nametext) at (name.base) {%
-				\fontsize{40pt}{32pt}\color{white}%
-				{\titlefont #1~}{\titlefont \textbf{#2}\par}
-				};
-		% Address
-		\node[
-			anchor=north, 
-			text=white, 
-			] (address) at (nametext.south)  {#3 \par};
-		% Phone/mail/nationality
-		\node[
-			anchor=north, 
-			text=white, 
-			] at (address.south)  {#4};
-	\end{tikzpicture}
-	\vspace{\hdrskip}
+    \begin{tikzpicture}[remember picture, overlay]
+        % Colored bar on top of the page
+        \node[
+            below right, 
+            fill=maincolor, 
+            minimum height=\hdrheight, 
+            minimum width=\paperwidth, 
+            outer sep=0,
+            ] (name) at (current page.north west) {};
+        % Node for the name
+        \node[
+            anchor=base, 
+            text=white, 
+            inner sep=0.25 cm
+            ] (nametext) at (name.base) {%
+                \fontsize{40pt}{32pt}\color{white}%
+                {\titlefont #1~}{\titlefont \textbf{#2}\par}
+                };
+        % Address
+        \node[
+            anchor=north, 
+            text=white, 
+            ] (address) at (nametext.south)  {#3 \par};
+        % Phone/mail/nationality
+        \node[
+            anchor=north, 
+            text=white, 
+            ] at (address.south)  {#4};
+    \end{tikzpicture}
+    \vspace{\hdrskip}
 } 
 
 % Places a picture on the top right of the page
 \newcommand{\photo}[1]{%
-	\begin{tikzpicture}[remember picture, overlay]
-		\node[
-			anchor=north east, 
-			inner sep=0,
-			outer sep=0,
-			] at (current page.north east) 
-				{\includegraphics[height=\hdrheight]{#1}};
-	\end{tikzpicture}
-	\vspace{-0.5\hdrskip}
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[
+            anchor=north east, 
+            inner sep=0,
+            outer sep=0,
+            ] at (current page.north east) 
+                {\includegraphics[height=\hdrheight]{#1}};
+    \end{tikzpicture}
+    \vspace{-0.5\hdrskip}
 }
 
 % ---------------------------------------------------------------------------- %
-% 									TITLE FORMAT 							   %
+%                                  TITLE FORMAT                                %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
@@ -180,9 +180,9 @@
 
 % Change format of the section title
 \titleformat{\section}%
-	{\titlefont\color{maincolor}\huge\bfseries}{\thesection}{0em}{}
+    {\titlefont\color{maincolor}\huge\bfseries}{\thesection}{0em}{}
 \titlespacing*{\section}%
-	{0pt}{1.5ex plus 0.2ex minus .2ex}{-0.5ex plus .2ex}
+    {0pt}{1.5ex plus 0.2ex minus .2ex}{-0.5ex plus .2ex}
 
 % Defines a new command which can be used as a formatter for your Job title and 
 % location.
@@ -195,7 +195,7 @@
 }
 
 % ---------------------------------------------------------------------------- %
-% 								ENVIRONMENTS								   %
+%                               ENVIRONMENTS                                   %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
@@ -209,21 +209,21 @@
 % New environment with two columns, a narrow one on the left for the dates and
 % a right one for what was done during that period.
 \newenvironment{tabularcv}{%
-	\tabularx{\textwidth}{%
-		@{}>{\raggedright\arraybackslash}p{\LeftColBody}%
-		@{}>{\raggedright\arraybackslash}p{\RightColBody}%
-		}%
-	}%
+    \tabularx{\textwidth}{%
+        @{}>{\raggedright\arraybackslash}p{\LeftColBody}%
+        @{}>{\raggedright\arraybackslash}p{\RightColBody}%
+        }%
+    }%
 {\endtabularx}%
 
-% Use bullet point lists inside a tabular environment	
+% Use bullet point lists inside a tabular environment    
 \newenvironment{tabitemize}{
-	\itemize}{
-	\vspace*{-\baselineskip}
-	\enditemize}	
+    \itemize}{
+    \vspace*{-\baselineskip}
+    \enditemize}    
 
 % ---------------------------------------------------------------------------- %
-%								BODY TEXT OPTIONS							   %
+%                              BODY TEXT OPTIONS                               %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
@@ -233,7 +233,7 @@
 \RequirePackage[margin = \margin]{geometry} 
 
 % Remove indent at the start of a new paragraph
-\setlength{\parindent}{0pt}	
+\setlength{\parindent}{0pt}    
 
-% Add extra vertical space between paragraphs	
+% Add extra vertical space between paragraphs    
 \setlength{\parskip}{\vspacepar} 
