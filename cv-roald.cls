@@ -5,14 +5,17 @@
 % ---------------------------------------------------------------------------- %
 %                                 PARAMETERS                                   %
 % ---------------------------------------------------------------------------- %
-
 % Size of the margin
 \newlength{\margin}
 \setlength{\margin}{25mm}
 
+% # REQUIRED PACKAGES
+% Adjust the margins of a page
+\RequirePackage[margin = \margin]{geometry} 
+
 % Size of the left column
 \newlength{\leftcol}
-\setlength{\leftcol}{0.22\paperwidth}
+\setlength{\leftcol}{19 mm}
 
 % Height of the header
 \newlength{\hdrheight}
@@ -30,6 +33,22 @@
 % Horizontal space after font awesome icons
 \newlength{\FAspace}
 \setlength{\FAspace}{0.2em}
+
+% ---------------------------------------------------------------------------- %
+%                              CALCULATED LENGTHS                              %
+% ---------------------------------------------------------------------------- %
+
+% # REQUIRED PACKAGES
+% To calculate lengths, for example the skip after the header
+\RequirePackage{calc} 
+
+% Skip after the header
+\newlength{\hdrskip}
+\setlength{\hdrskip}{\hdrheight-\margin}
+
+% Width of the right column
+\newlength{\rightcol}
+\setlength{\rightcol}{\textwidth-\leftcol}
 
 % ---------------------------------------------------------------------------- %
 %                              CLASS OPTION                                    %
@@ -51,30 +70,6 @@
 
 \ExecuteOptionsX{changecolor}
 \ProcessOptionsX%
-
-% ---------------------------------------------------------------------------- %
-%                              CALCULATED LENGTHS                              %
-% ---------------------------------------------------------------------------- %
-
-% # REQUIRED PACKAGES
-% To calculate lengths, for example the skip after the header
-\RequirePackage{calc} 
-
-% Skip after the header
-\newlength{\hdrskip}
-\setlength{\hdrskip}{\hdrheight-\margin}
-
-% Width of the right column
-\newlength{\rightcol}
-\setlength{\rightcol}{\paperwidth-\leftcol}
-
-% Left col without margin
-\newlength{\LeftColBody}
-\setlength{\LeftColBody}{\leftcol-\margin}
-
-% Right col without margin
-\newlength{\RightColBody}
-\setlength{\RightColBody}{\textwidth-\LeftColBody}
 
 % ---------------------------------------------------------------------------- %
 %                                     FONTS                                    %
@@ -210,11 +205,11 @@
 % a right one for what was done during that period.
 \newenvironment{tabularcv}{%
     \tabularx{\textwidth}{%
-        @{}>{\raggedright\arraybackslash}p{\LeftColBody}%
-        @{}>{\raggedright\arraybackslash}p{\RightColBody}%
+        @{}>{\raggedright\arraybackslash}p{\leftcol}%
+        @{}>{\raggedright\arraybackslash}p{\rightcol}%
         }%
     }%
-{\endtabularx}%
+    {\endtabularx}%
 
 % Use bullet point lists inside a tabular environment    
 \newenvironment{tabitemize}{
@@ -229,8 +224,6 @@
 % # REQUIRED PACKAGES
 % To change \parindent and \parskip
 \RequirePackage{parskip}
-% Adjust the margins of a page
-\RequirePackage[margin = \margin]{geometry} 
 
 % Remove indent at the start of a new paragraph
 \setlength{\parindent}{0pt}    
