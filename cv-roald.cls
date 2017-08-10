@@ -9,10 +9,6 @@
 \newlength{\margin}
 \setlength{\margin}{25mm}
 
-% # REQUIRED PACKAGES
-% Adjust the margins of a page
-\RequirePackage[margin = \margin]{geometry} 
-
 % Size of the left column
 \newlength{\leftcol}
 \setlength{\leftcol}{19 mm}
@@ -23,7 +19,7 @@
 
 % Vertical space between rows/paragraphs
 \newlength{\vspacepar}
-\setlength{\vspacepar}{0.3\baselineskip}
+\setlength{\vspacepar}{0.4\baselineskip}
 
 % Horizontal space before and after vertical bar (|) between address and 
 % the contact details
@@ -34,6 +30,10 @@
 \newlength{\FAspace}
 \setlength{\FAspace}{0.2em}
 
+% # REQUIRED PACKAGES
+% Adjust the margins of a page
+\RequirePackage[margin = \margin, top = \hdrheight]{geometry} 
+
 % ---------------------------------------------------------------------------- %
 %                              CALCULATED LENGTHS                              %
 % ---------------------------------------------------------------------------- %
@@ -41,10 +41,6 @@
 % # REQUIRED PACKAGES
 % To calculate lengths, for example the skip after the header
 \RequirePackage{calc} 
-
-% Skip after the header
-\newlength{\hdrskip}
-\setlength{\hdrskip}{\hdrheight-\margin}
 
 % Width of the right column
 \newlength{\rightcol}
@@ -56,16 +52,20 @@
 
 % # REQUIRED PACKAGES
 % Use options in key value format for package options
+% For more info on why this is needed see: 
+% https://tex.stackexchange.com/questions/383144/pass-rgb-colours-to-custom-class
 \RequirePackage{kvoptions-patch}
 % Flexible macros for defining and setting keys
 \RequirePackage{xkeyval} %
+% Draw things (needed for the header). Load before color package!
+\RequirePackage{tikz} 
 % Enable the use of colours
-\RequirePackage{xcolor} 
+\RequirePackage{color} 
 
 % Add option to change the color of the header and titles
 % \define@key[<prefix>]{<family>}{<key>}[<default>]{<function>}
-\define@key{cv-roald.cls}{changecolor}[102, 204, 51]{%
-    \definecolor{maincolor}{RGB}{#1}%
+\define@key{cv-roald.cls}{changecolor}[169, 53, 40]{%
+  \definecolor{maincolor}{RGB}{#1}%
 }
 
 \ExecuteOptionsX{changecolor}
@@ -80,35 +80,29 @@
 \RequirePackage{fontspec}
 % Important to add, else fontawesome will not work with XeLaTeX 
 \defaultfontfeatures{ 
-    Path = Fonts/
+  Path = Fonts/
 }
 % Load cool icons, such as the linked in logo
 \RequirePackage{fontawesome} 
-% Subliminal refinements towards typographical perfection 
-\RequirePackage{microtype}
 
 \setmainfont{SourceSansPro}[ 
-        Path = Fonts/,
-        Extension = .otf ,
-        UprightFont = *-Light,
-        ItalicFont = *-LightIt,
-        BoldFont = *-Semibold,
-    ]    
+  Path = Fonts/,
+  Extension = .otf ,
+  UprightFont = *-Light,
+  ItalicFont = *-LightIt,
+  BoldFont = *-Semibold,
+]    
 
 \newfontfamily\titlefont{AdventPro}[ 
-        Path = Fonts/,
-        Extension = .ttf,
-        UprightFont = *-ExtraLight,
-        BoldFont = *-SemiBold,
-    ]        
+  Path = Fonts/,
+  Extension = .ttf,
+  UprightFont = *-ExtraLight,
+  BoldFont = *-SemiBold,
+]        
 
 % ---------------------------------------------------------------------------- %
 %                                   HEADER                                     %
 % ---------------------------------------------------------------------------- %
-
-% # REQUIRED PACKAGES
-% Draw things (needed for the header)
-\RequirePackage{tikz} 
 
 % Separator with a horizontal space before and after. Is used in the header as 
 % a separator between address and contact details
@@ -120,50 +114,51 @@
 % #3 = Address
 % #4 = Phone, mail and LinkedIn
 \newcommand{\header}[4]{%
-    \begin{tikzpicture}[remember picture, overlay]
-        % Colored bar on top of the page
-        \node[
-            below right, 
-            fill=maincolor, 
-            minimum height=\hdrheight, 
-            minimum width=\paperwidth, 
-            outer sep=0,
-            ] (name) at (current page.north west) {};
-        % Node for the name
-        \node[
-            anchor=base, 
-            text=white, 
-            inner sep=0.25 cm
-            ] (nametext) at (name.base) {%
-                \fontsize{40pt}{32pt}\color{white}%
-                {\titlefont #1~}{\titlefont \textbf{#2}\par}
-                };
-        % Address
-        \node[
-            anchor=north, 
-            text=white, 
-            ] (address) at (nametext.south)  {#3 \par};
-        % Phone/mail/nationality
-        \node[
-            anchor=north, 
-            text=white, 
-            ] at (address.south)  {#4};
-    \end{tikzpicture}
-    \vspace{\hdrskip}
+  \begin{tikzpicture}[remember picture, overlay]
+    % Colored bar on top of the page
+    \node[
+        below right, 
+        fill=maincolor, 
+        minimum height=\hdrheight, 
+        minimum width=\paperwidth, 
+        outer sep=0,
+      ] (name) at (current page.north west) {};
+    % Node for the name
+    \node[
+        anchor=base, 
+        text=white,
+        inner sep=0.25 cm,
+      ] (nametext) at (name.base) {%
+        \fontsize{40pt}{32pt}\color{white}%
+        {\titlefont #1~}{\titlefont \textbf{#2}\par}
+        };
+    % Address
+    \node[
+        anchor=north, 
+        text=white,
+      ] (address) at (nametext.south) {#3\par};
+    % Phone/mail/nationality
+    \node[
+        anchor=north, 
+        text=white,
+      ] at (address.south)  {#4\par};
+  \end{tikzpicture}
 } 
 
 % Places a picture on the top right of the page
 \newcommand{\photo}[1]{%
-    \begin{tikzpicture}[remember picture, overlay]
-        \node[
-            anchor=north east, 
-            inner sep=0,
-            outer sep=0,
-            ] at (current page.north east) 
-                {\includegraphics[height=\hdrheight]{#1}};
-    \end{tikzpicture}
-    \vspace{-0.5\hdrskip}
-}
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[
+        anchor=north east, 
+        inner sep=0 pt,
+        outer sep=0 pt,
+      ] at (current page.north east)
+        {\includegraphics[height=\hdrheight]{#1}\par};    
+  \end{tikzpicture}%
+  % Fix when picture is added, else the text moves down. 
+  \vspace*{-1.5\baselineskip}
+}%
+
 
 % ---------------------------------------------------------------------------- %
 %                                  TITLE FORMAT                                %
@@ -175,9 +170,10 @@
 
 % Change format of the section title
 \titleformat{\section}%
-    {\titlefont\color{maincolor}\huge\bfseries}{\thesection}{0em}{}
+  {\titlefont\color{maincolor}\huge\bfseries}{\thesection}{0em}{}
+% \titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
 \titlespacing*{\section}%
-    {0pt}{1.5ex plus 0.2ex minus .2ex}{-0.5ex plus .2ex}
+  {0pt}{1ex plus 0.2ex minus 0.2ex}{-1ex plus 0.1ex minus 0.1ex}
 
 % Defines a new command which can be used as a formatter for your Job title and 
 % location.
@@ -185,8 +181,8 @@
 % #1 = Job or education title 
 % #2 = Company and location
 \newcommand{\worktitle}[2]{
-    {\bfseries\MakeUppercase{#1}}  
-    {\itshape #2}
+  {\bfseries\MakeUppercase{#1}}  
+  {\itshape #2}
 }
 
 % ---------------------------------------------------------------------------- %
@@ -194,39 +190,46 @@
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
-% For tables
-\RequirePackage{tabularx} 
-% Reduce spacing between items
-\RequirePackage{enumitem} 
-% Change item separation of lists globally
-\setlist{parsep=1 pt, topsep=1 pt} 
+% Increase spacing after text, between rows
+\usepackage{cellspace}
+\setlength{\cellspacebottomlimit}{\vspacepar}
 
 % New environment with two columns, a narrow one on the left for the dates and
 % a right one for what was done during that period.
 \newenvironment{tabularcv}{%
-    \tabularx{\textwidth}{%
-        @{}>{\raggedright\arraybackslash}p{\leftcol}%
-        @{}>{\raggedright\arraybackslash}p{\rightcol}%
-        }%
-    }%
-    {\endtabularx}%
+  \par\noindent
+  \begin{tabular}{
+      @{}>{\raggedright\arraybackslash}S{p{\leftcol}}
+      @{}>{\raggedright\arraybackslash}S{p{\rightcol}}
+      @{}
+    }
+  }
+  {\end{tabular}}
 
 % Use bullet point lists inside a tabular environment    
 \newenvironment{tabitemize}{
-    \itemize}{
-    \vspace*{-\baselineskip}
-    \enditemize}    
+  \itemize}
+  {\enditemize}    
 
 % ---------------------------------------------------------------------------- %
 %                              BODY TEXT OPTIONS                               %
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
-% To change \parindent and \parskip
+% To change \parindent and it adjusts the skips between list items.
 \RequirePackage{parskip}
 
 % Remove indent at the start of a new paragraph
 \setlength{\parindent}{0pt}    
 
-% Add extra vertical space between paragraphs    
-\setlength{\parskip}{\vspacepar} 
+% ---------------------------------------------------------------------------- %
+%                        		      PATCH           	                       %
+% ---------------------------------------------------------------------------- %
+% # REQUIRED PACKAGES
+\RequirePackage{xpatch}
+
+% Patch to prevent package color and cellspace to clash
+% More info: https://tex.stackexchange.com/questions/384664/xcolor-package-disables-cellspace-package
+\makeatletter
+\xpatchcmd{\@endpbox}{\color@endgroup}{\expandafter\color@endgroup}{}{\ddt}
+\makeatother

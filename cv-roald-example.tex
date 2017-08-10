@@ -1,7 +1,7 @@
 % !TeX program = xelatex
 % Run with XeLaTeX
 
-\documentclass[changecolor={206, 23, 21}]{cv-roald}
+\documentclass[changecolor={111, 156, 45}]{cv-roald}
 % Available options for cv-roald documentclass: 
 % ---------------------------------------------
 %     - changecolor = {R, G, B} 
@@ -16,12 +16,12 @@
 % \sep inserts a | between items. 
 % You can use FontAwesome icons and use \FAspace after a font awesome icon to
 % insert a predefined horizontal space after a font awesome icon icon.
-\header{roald}{ruiter}{
-    \faMapMarker \hspace{\FAspace} Street 123 \sep 1234 AB City \sep Country}{
-    \faMobile \hspace{\FAspace} +31 612 345 678 \sep 
-    \faEnvelope \hspace{\FAspace} johndoe@gmail.com \sep 
-    \faLinkedinSquare \hspace{\FAspace} https://linkedin.com/in/johndoe
-    }
+\header{roald}{ruiter}{%
+  \faMapMarker \hspace{\FAspace} Street 123 \sep 1234 AB City \sep Country}{%
+  \faMobile \hspace{\FAspace} +31 612 345 678 \sep% 
+  \faEnvelope \hspace{\FAspace} johndoe@gmail.com \sep% 
+  \faLinkedinSquare \hspace{\FAspace} https://linkedin.com/in/johndoe%
+  }
 
 % Add a picture to the top right of the page. Comment or delete if you do not 
 % want a picture
@@ -39,11 +39,11 @@
 2012-2016   &   \worktitle{Master Physics}{University of City (NL)}
                 \newline Did awesome physics things.
                 \begin{tabitemize}
-                    \item I did this
-                    \item Learned that
-                    \item Also did that
+                  \item I did this 
+                  \item Learned that
+                  \item Also did that
                 \end{tabitemize} 
-                \\[\vspacepar] % Start new row with this
+                \\
                 
 2010-2012   &   \worktitle{Bachelor Physics}{University of City (NL)}
                 \newline Thesis title: Confined particle systems in
@@ -56,11 +56,11 @@
                 \newline Project management and designing of bridge
                 components.
                 \begin{tabitemize}
-                    \item Managing projects
-                    \item Measuring
-                    \item Proof of concept realisation
+                  \item Managing projects
+                  \item Measuring
+                  \item Proof of concept realisation
                 \end{tabitemize} 
-                \\[\vspacepar] % Start new row with this
+                \\
                 
 2012-2013   &   \worktitle{Software engineer}{Software United (NL)}
                 \newline Programming in Python and C++.
@@ -79,10 +79,10 @@ Operating systems: Windows, OSX, Linux.
 
 \section*{languages}
 \begin{tabularcv}
-Dutch        &	Mother tongue \\[\vspacepar]
-English      &  Excellent, C2 \\[\vspacepar]
-German       &  Intermediate, B2 \\[\vspacepar]
-Swahili      &  Intermediate, B1
+Dutch       &		Mother tongue \\
+English     &  	Excellent, C2 \\
+German      &  	Intermediate, B2 \\
+Swahili     &  	Intermediate, B1
 \end{tabularcv}
 
 \section*{interests}
