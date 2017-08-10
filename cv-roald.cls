@@ -19,7 +19,7 @@
 
 % Vertical space between rows/paragraphs
 \newlength{\vspacepar}
-\setlength{\vspacepar}{0.4\baselineskip}
+\setlength{\vspacepar}{0.6\baselineskip}
 
 % Horizontal space before and after vertical bar (|) between address and 
 % the contact details
