@@ -1,13 +1,34 @@
 % !TeX program = xelatex
 % Run with XeLaTeX
 
-\documentclass[changecolor={111, 156, 45}]{cv-roald}
+\documentclass[
+    changecolor={111, 156, 45}, 
+%    titlecolor=second,
+%    colorharmony={wheel,1,3}, 
+]{cv-roald}
 % Available options for cv-roald documentclass: 
-% ---------------------------------------------
-%     - changecolor = {R, G, B} 
-%       Changes the color of the header bar and the titles. 
-%       It expects a RGB color code where RGB go from 0-255.
- 
+% 
+% - changecolor = {R, G, B} (default: {169, 53, 40} = sharelatex lion red)
+%   Changes the color of the header bar and the titles. 
+%   It expects a RGB color code where RGB go from 0-255.
+%
+% - colorharmony = {wheel,i,j} (defualt: {wheel,1,3})
+%   Choose the color harmony model you want to use.
+%     wheel = wheel or twheel
+%     i		= number < j
+%	  j		= for j-color harmony 
+%	    	  j=3 -> three color harmony or color triad
+% 	See page 37 of the xcolor manual for more information on commands: 
+% 	http://texdoc.net/texmf-dist/doc/latex/xcolor/xcolor.pdf  
+% 	Or check http://paletton.com to see how color harmonies work.
+%
+% - titlecolor = {colorname} (default: main)
+%	Change the colors of the titles. You can try: second, black!50, 
+%	green!40!yellow, etc.     	
+%
+%  The colors defined through changecolor and colorharmony are called 
+%  *main* and *second* and can be used in the main document.	
+
 \begin{document}
 \pagestyle{empty} %to remove the page numbers
 
@@ -17,10 +38,11 @@
 % You can use FontAwesome icons and use \FAspace after a font awesome icon to
 % insert a predefined horizontal space after a font awesome icon icon.
 \header{roald}{ruiter}{%
-  \faMapMarker \hspace{\FAspace} Street 123 \sep 1234 AB City \sep Country}{%
-  \faMobile \hspace{\FAspace} +31 612 345 678 \sep% 
-  \faEnvelope \hspace{\FAspace} johndoe@gmail.com \sep% 
-  \faLinkedinSquare \hspace{\FAspace} https://linkedin.com/in/johndoe%
+  \faMapMarker \FAspace Street 123 \sep 1234 AB City \sep Country}{%
+  \faMobile \FAspace +31 612 345 678 \sep% 
+  \faEnvelope \FAspace johndoe@gmail.com \sep% 
+  \faLinkedinSquare /in/johndoe \sep%
+  \faGithub /johndoe %
   }
 
 % Add a picture to the top right of the page. Comment or delete if you do not 
@@ -56,6 +78,7 @@
                 \newline Project management and designing of bridge
                 components.
                 \begin{tabitemize}
+                % Example use of *maincolor* and *secondcolor* in the main document.    
                   \item Managing projects
                   \item Measuring
                   \item Proof of concept realisation
@@ -67,9 +90,10 @@
 \end{tabularcv}   
 
 \section*{awards}
+% Use \link{URL} to place an link. It inserts a fontawsome logo, where the color is determined from the color harmony settings.
 \begin{tabularcv}
 2010        &   Winner of \emph{Turing} contest in Lancaster 
-                ($\pm$ 431 contenders). 
+                ($\pm$ 431 contenders). \link{http://someurl.com/}
 \end{tabularcv}
 
 \section*{software skills}
@@ -79,7 +103,7 @@ Operating systems: Windows, OSX, Linux.
 
 \section*{languages}
 \begin{tabularcv}
-Dutch       &		Mother tongue \\
+Dutch       &	Mother tongue \\
 English     &  	Excellent, C2 \\
 German      &  	Intermediate, B2 \\
 Swahili     &  	Intermediate, B1
@@ -89,3 +113,6 @@ Swahili     &  	Intermediate, B1
 Bowling, cats, hot food.
     
 \end{document}
+
+% Create .png image of .pdf file with imagemagic
+% convert -density 150 cv-roald-example.pdf -quality 90 -alpha Remove \( +clone -background black -shadow 120x10+0+0 \) +swap -background white -layers merge +repage cv-roald-example.png
