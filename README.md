@@ -3,7 +3,7 @@ I created a custom curriculum vitae class file (`.cls`), see the comments in `cv
 
 This template lets you choose one base color via the `documentclass` option `changecolor`. By using a color harmony model, a color named `second` is chosen, which by default is only used for the links. However, by using the documentclass option `titlecolor=second`, it is also used for the titles. See the gif below for a little demo.
 
-By choosing colors using the color harmony models, you make sure the different colors in the document match nicely. See more information see the [wiki](https://en.wikipedia.org/wiki/Harmony_(color\)) or [here](http://paletton.com/).
+By choosing colors using the color harmony models, you make sure the different colors in the document match nicely. See more information see the [wiki](https://en.wikipedia.org/wiki/Harmony_(color\\)) or [here](http://paletton.com/).
 
 ![demo](document_class_options_demo.gif)
 
