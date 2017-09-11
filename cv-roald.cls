@@ -29,6 +29,9 @@
 % Horizontal space after font awesome icons
 \newcommand{\FAspace}{\hspace{0.5 em}}
 
+% Left indentation (before the bullet) of an itemized list
+\setlength{\leftmargini}{2em}
+
 % # REQUIRED PACKAGES
 % Adjust the margins of a page
 \RequirePackage[margin = \margin, top = \hdrheight]{geometry} 

@@ -13,5 +13,6 @@ By choosing colors according to a color [harmony model](https://en.wikipedia.org
 - Added a new `documentclass` option `titlecolor`, which allows you to set a different color for the titles.
 - Defined a new command `\FAspace` which replaces the old length `\FAspace` (and therefore breaks compatibility with the v2 class file). Now you can use `\FAspace` directly in the document, instead of using `\hspace{\FAspace}`.
 - Defined a new command `\link{someurl.com}`, which places a fontawesome logo in the document with the link. The color of the logo is detemined using the color harmony models.
+- Reduced the indentation of a bulleted list
 
 
