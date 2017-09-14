@@ -225,11 +225,6 @@
   }
   {\end{tabular}}
 
-% Use bullet point lists inside a tabular environment    
-\newenvironment{tabitemize}{
-  \itemize}
-  {\enditemize}    
-
 % ---------------------------------------------------------------------------- %
 %                              BODY TEXT OPTIONS                               %
 % ---------------------------------------------------------------------------- %
