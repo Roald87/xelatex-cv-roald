@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{cv-roald}[2017/08/10 My custom CV class v2]
+\ProvidesClass{cv-roald}[2017/09/10 My custom CV class v3.0.0]
 \LoadClass[a4paper]{article}
 
 % ---------------------------------------------------------------------------- %
@@ -27,8 +27,10 @@
 \setlength{\hspaddress}{1em}
 
 % Horizontal space after font awesome icons
-\newlength{\FAspace}
-\setlength{\FAspace}{0.2em}
+\newcommand{\FAspace}{\hspace{0.5 em}}
+
+% Left indentation (before the bullet) of an itemized list
+\setlength{\leftmargini}{2em}
 
 % # REQUIRED PACKAGES
 % Adjust the margins of a page
@@ -65,10 +67,27 @@
 % Add option to change the color of the header and titles
 % \define@key[<prefix>]{<family>}{<key>}[<default>]{<function>}
 \define@key{cv-roald.cls}{changecolor}[169, 53, 40]{%
-  \definecolor{maincolor}{RGB}{#1}%
+    \definecolor{main}{RGB}{#1}%
 }
 
+% Process changecolor to define main color, else colorharmony and titlecolor
+% will not work correctly.
 \ExecuteOptionsX{changecolor}
+\ProcessOptionsX%
+
+\define@key{cv-roald.cls}{colorharmony}[wheel,2,3]{%
+    \colorlet{second}{main>#1}%
+}
+
+% Process colorharmony to define second color, or else titlecolor will not work.
+\ExecuteOptionsX{colorharmony}
+\ProcessOptionsX%
+
+\define@key{cv-roald.cls}{titlecolor}[main]{%
+    \colorlet{title}{#1}%
+}
+
+\ExecuteOptionsX{titlecolor}
 \ProcessOptionsX%
 
 % ---------------------------------------------------------------------------- %
@@ -118,7 +137,7 @@
     % Colored bar on top of the page
     \node[
         below right, 
-        fill=maincolor, 
+        fill=main, 
         minimum height=\hdrheight, 
         minimum width=\paperwidth, 
         outer sep=0,
@@ -170,7 +189,7 @@
 
 % Change format of the section title
 \titleformat{\section}%
-  {\titlefont\color{maincolor}\huge\bfseries}{\thesection}{0em}{}
+  {\titlefont\color{title}\huge\bfseries}{\thesection}{0em}{}
 % \titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
 \titlespacing*{\section}%
   {0pt}{1ex plus 0.2ex minus 0.2ex}{-1ex plus 0.1ex minus 0.1ex}
@@ -206,11 +225,6 @@
   }
   {\end{tabular}}
 
-% Use bullet point lists inside a tabular environment    
-\newenvironment{tabitemize}{
-  \itemize}
-  {\enditemize}    
-
 % ---------------------------------------------------------------------------- %
 %                              BODY TEXT OPTIONS                               %
 % ---------------------------------------------------------------------------- %
@@ -220,7 +234,12 @@
 \RequirePackage{parskip}
 
 % Remove indent at the start of a new paragraph
-\setlength{\parindent}{0pt}    
+\setlength{\parindent}{0pt}  
+
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=second}
+% Places a link to a website with a fontawesome logo
+\newcommand{\link}[1]{\href{#1}{\faExternalLink}}  
 
 % ---------------------------------------------------------------------------- %
 %                        		      PATCH           	                       %
