@@ -53,42 +53,33 @@
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
-% Use options in key value format for package options
-% For more info on why this is needed see: 
-% https://tex.stackexchange.com/questions/383144/pass-rgb-colours-to-custom-class
-\RequirePackage{kvoptions-patch}
-% Flexible macros for defining and setting keys
-\RequirePackage{xkeyval} %
 % Draw things (needed for the header). Load before color package!
 \RequirePackage{tikz} 
 % Enable the use of colours
 \RequirePackage{color} 
+% Enable bool handling
+\RequirePackage{etoolbox}
 
-% Add option to change the color of the header and titles
-% \define@key[<prefix>]{<family>}{<key>}[<default>]{<function>}
-\define@key{cv-roald.cls}{changecolor}[169, 53, 40]{%
-    \definecolor{main}{RGB}{#1}%
+\newbool{customColorBool}
+\setbool{customColorBool}{false}
+
+\DeclareOption{customcolor}{
+\setbool{customColorBool}{true}
 }
 
-% Process changecolor to define main color, else colorharmony and titlecolor
-% will not work correctly.
-\ExecuteOptionsX{changecolor}
-\ProcessOptionsX%
+% Pass all unknown options to article:
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
-\define@key{cv-roald.cls}{colorharmony}[wheel,2,3]{%
-    \colorlet{second}{main>#1}%
-}
+% Process all options
+\ProcessOptions\relax
 
-% Process colorharmony to define second color, or else titlecolor will not work.
-\ExecuteOptionsX{colorharmony}
-\ProcessOptionsX%
-
-\define@key{cv-roald.cls}{titlecolor}[main]{%
-    \colorlet{title}{#1}%
-}
-
-\ExecuteOptionsX{titlecolor}
-\ProcessOptionsX%
+% Set color defaults if not specified
+\ifbool{customColorBool}{%true
+	}{ % do for false
+		\definecolor{main}{RGB}{169, 53, 40}
+		\definecolor{second}{RGB}{169, 53, 40}
+		\colorlet{title}{main}
+	}
 
 % ---------------------------------------------------------------------------- %
 %                                     FONTS                                    %

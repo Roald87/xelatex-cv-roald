@@ -1,33 +1,14 @@
 % !TeX program = xelatex
 % Run with XeLaTeX
 
-\documentclass[
-    changecolor={111, 156, 45}, 
-%    titlecolor=second,
-%    colorharmony={wheel,1,3}, 
-]{cv-roald}
-% Available options for cv-roald documentclass: 
-% 
-% - changecolor = {R, G, B} (default: {169, 53, 40} = sharelatex lion red)
-%   Changes the color of the header bar and the titles. 
-%   It expects a RGB color code where RGB go from 0-255.
-%
-% - colorharmony = {wheel,i,j} (defualt: {wheel,1,3})
-%   Choose the color harmony model you want to use.
-%     wheel = wheel or twheel
-%     i		= number < j
-%	  j		= for j-color harmony 
-%	    	  j=3 -> three color harmony or color triad
-% 	See page 37 of the xcolor manual for more information on commands: 
-% 	http://texdoc.net/texmf-dist/doc/latex/xcolor/xcolor.pdf  
-% 	Or check http://paletton.com to see how color harmonies work.
-%
-% - titlecolor = {colorname} (default: main)
-%	Change the colors of the titles. You can try: second, black!50, 
-%	green!40!yellow, etc.     	
-%
-%  The colors defined through changecolor and colorharmony are called 
-%  *main* and *second* and can be used in the main document.	
+\documentclass[customcolor]{cv-roald}
+% For specific options it is needed to declare the Color in the document.
+% If 'customcolor' is chosen, one has to specify the colors main, title and second:
+\definecolor{main}{RGB}{111,156,45}
+\definecolor{second}{RGB}{111,156,45}
+\colorlet{title}{main}
+% Else this colors are defined per Default in the class (red)
+
 
 \begin{document}
 \pagestyle{empty} %to remove the page numbers
