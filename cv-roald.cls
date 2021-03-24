@@ -240,15 +240,3 @@
 \hypersetup{colorlinks=true, urlcolor=second}
 % Places a link to a website with a fontawesome logo
 \newcommand{\link}[1]{\href{#1}{\faExternalLink}}  
-
-% ---------------------------------------------------------------------------- %
-%                        		      PATCH           	                       %
-% ---------------------------------------------------------------------------- %
-% # REQUIRED PACKAGES
-\RequirePackage{xpatch}
-
-% Patch to prevent package color and cellspace to clash
-% More info: https://tex.stackexchange.com/questions/384664/xcolor-package-disables-cellspace-package
-\makeatletter
-\xpatchcmd{\@endpbox}{\color@endgroup}{\expandafter\color@endgroup}{}{\ddt}
-\makeatother
