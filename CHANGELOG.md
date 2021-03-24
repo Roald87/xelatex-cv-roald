@@ -1,3 +1,7 @@
+# Changes in version 4
+- Removed cell space patch
+- Fixed spacing after titles in tex live 2020.
+
 # Changes in version 3
 ## Big changes
 - Added a new `documentclass` option `colorharmony`, which defines a new color using color harmony models. The new color is called `second` and can be used in the document with `\color{second}`. This color is also used for the new `link{}` command, see below.
