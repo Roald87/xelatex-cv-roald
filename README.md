@@ -1,4 +1,7 @@
 # CV template for XeLaTeX
+
+**Version 5.x.x only works with TexLive 2023.**
+
 ![Example](cv-roald-example.png)
 
 This template lets you choose one base color via the `documentclass` option `changecolor`. You can for example use the color of the company you are applying for. By using a color harmony model, a color named `second` is picked. This color is only used for the links. However, if you choose the option `titlecolor=second`, the second color is also used for the titles. See the gif below for a little demo.
