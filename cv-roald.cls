@@ -242,6 +242,8 @@
 \setlength{\parindent}{0pt}  
 
 \RequirePackage{hyperref}
+
+% Links will be in the second color as determined by the color wheel
 \hypersetup{colorlinks=true, urlcolor=second}
 % Places a link to a website with a fontawesome logo
 \newcommand{\link}[1]{\href{#1}{\faExternalLink}}  
