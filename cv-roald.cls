@@ -59,10 +59,8 @@
 \RequirePackage{kvoptions-patch}
 % Flexible macros for defining and setting keys
 \RequirePackage{xkeyval} %
-% Draw things (needed for the header). Load before color package!
+% Draw things (needed for the header).
 \RequirePackage{tikz} 
-% Enable the use of colours
-\RequirePackage{color} 
 
 % Add option to change the color of the header and titles
 % \define@key[<prefix>]{<family>}{<key>}[<default>]{<function>}
