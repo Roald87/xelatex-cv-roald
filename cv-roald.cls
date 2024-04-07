@@ -53,10 +53,6 @@
 % ---------------------------------------------------------------------------- %
 
 % # REQUIRED PACKAGES
-% Use options in key value format for package options
-% For more info on why this is needed see: 
-% https://tex.stackexchange.com/questions/383144/pass-rgb-colours-to-custom-class
-\RequirePackage{kvoptions-patch}
 % Flexible macros for defining and setting keys
 \RequirePackage{xkeyval} %
 % Draw things (needed for the header).
