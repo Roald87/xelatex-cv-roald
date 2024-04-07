@@ -176,6 +176,8 @@
   \vspace*{-1.5\baselineskip}
 }%
 
+% URL header link command, because they need to be white
+\newcommand{\headerref}[3][white]{\href{https://#2}{\color{#1}{#3}}}
 % ---------------------------------------------------------------------------- %
 %                                  TITLE FORMAT                                %
 % ---------------------------------------------------------------------------- %
