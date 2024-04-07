@@ -1,6 +1,6 @@
 # CV template for XeLaTeX
 
-**Version 5.x.x only works with TexLive 2023.**
+**Version 5.x.x only works with TexLive 2023. Tested on Overleaf.**
 
 ![Example](cv-roald-example.png)
 
