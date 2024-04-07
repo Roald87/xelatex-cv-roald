@@ -178,6 +178,12 @@
 
 % URL header link command, because they need to be white
 \newcommand{\headerref}[3][white]{\href{https://#2}{\color{#1}{#3}}}
+
+% special commands for linkedin, github and your own webpage
+\newcommand{\linkedin}[1]{\headerref{linkedin.com/in/#1}{\faLinkedinSquare /in/#1}}
+\newcommand{\github}[1]{\headerref{github.com/#1}{\faGithub /#1}}
+\newcommand{\website}[1]{\headerref{#1}{\faGlobe \FAspace #1}}
+
 % ---------------------------------------------------------------------------- %
 %                                  TITLE FORMAT                                %
 % ---------------------------------------------------------------------------- %
